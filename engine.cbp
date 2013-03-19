@@ -52,6 +52,7 @@
 		<Unit filename="structs.h" />
 		<Unit filename="svoxel.h" />
 		<Unit filename="tester.cpp" />
+		<Unit filename="voxel.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

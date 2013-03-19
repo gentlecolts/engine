@@ -1,4 +1,4 @@
-#include "engine.cpp" ///improve this, its a lib, customization should be do-able here, not in the lib
+#include "engine.cpp" ///one of these days i will actually look into how the linker actually works
 
 int main(){
 	return 0;
