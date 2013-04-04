@@ -1,4 +1,6 @@
-#include "lighting.h"
+#include "engine.h"
+//using namespace camera;
+const long double pi=4*atan(1.0l);///TODO move this into the class as static (was throwing errors, figure out later)
 
 class camera{
 protected:
@@ -11,9 +13,10 @@ protected:
 	point3d xcomp,ycomp;//x and y components
 
 	virtual void recalc(){//is called every time any of its vars change already, no reason for user to call, but could want to override in a subclass
+		//in this order because z is depth, not up, i dont care what mathematicians(sp?) say
 		scrnCntr.x=viewdist*sin(incline)*cos(azimuth);
-		scrnCntr.y=viewdist*sin(incline)*sin(azimuth);
-		scrnCntr.z=viewdist*cos(incline);
+		scrnCntr.y=viewdist*cos(incline);
+		scrnCntr.z=viewdist*sin(incline)*sin(azimuth);
 
 		double r=sqrt(viewdist*viewdist+xsize*xsize);
 		///calc xcomp here

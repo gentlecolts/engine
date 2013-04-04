@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1363812264 source:c:\users\jack\desktop\programming\c++\engine\engine.cpp
+	"voxel.h"
+	"camera.cpp"
+
+1364242457 c:\users\jack\desktop\programming\c++\engine\voxel.h
+	"structs.h"
+	"svoxel.h"
+	"avoxel.h"
+
+1364242457 c:\users\jack\desktop\programming\c++\engine\structs.h
+	<cstdlib>
+	<stdint.h>
+	<cmath>
+	<vector>
+
+1364219677 c:\users\jack\desktop\programming\c++\engine\svoxel.h
+
+1364218486 c:\users\jack\desktop\programming\c++\engine\avoxel.h
+
+1364238962 c:\users\jack\desktop\programming\c++\engine\camera.cpp
+	"engine.h"
+
+1363571004 c:\users\jack\desktop\programming\c++\engine\lighting.h
+
+1364239417 source:c:\users\jack\desktop\programming\c++\engine\tester.cpp
+	"engine.h"
+	<iostream>
+
+1364218710 c:\users\jack\desktop\programming\c++\engine\engine.h
+	"voxel.h"
+	"camera.cpp"
+
