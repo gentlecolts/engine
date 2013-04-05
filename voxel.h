@@ -5,81 +5,60 @@
 
 class voxel;
 
-///TODO: investigate thread safeness of constructor and destructor
 struct vRef{
 	voxel* data;
 	int* references;
 
-	vRef(voxel* value,int* refs){
-		references=refs;
-		*references++;
-		data=value;
-	}
+	vRef(voxel*,int*);
 	~vRef();
 
-	operator voxel*(){return data;}
+	operator voxel*();
 };
 
 class voxel{
 protected:
 	point3d center;
-	point3d x,y,z;//vectors defining the x,y,and z components of the object
 	///TODO: x,y,and z need better names
-	double xmag,ymag,zmag;//magnitudes of the previous
+	point3d xvec,yvec,zvec;//vectors defining the x,y,and z components of the object
+
+	//double xmag,ymag,zmag;//magnitudes of the previous
 
 	vnode* head;
 	int refrences;
-	virtual bool iterate(point3d cntr,vector3d* ray,vnode* current,int depth,uint32_t* ){
-
-	}
+	virtual bool iterate(point3d,vector3d*,vnode*,int,uint32_t*);
 public:
-	virtual bool intersects(vector3d* ray){//does the ray intersect the top level node?
+	virtual bool intersects(vector3d*);//does the given ray intersect the top level node?
 
-	}
-	virtual bool colorFromVec(vector3d* ray,uint32_t* color){
-		if(intersects(ray)){
-			return iterate(center,ray,head,1,color);
-		}else{
-			return false;
-		}
-	}
-	virtual bool colorFromVec(point3d origin,point3d D,uint32_t* color){//returns false if vector does not intersect voxel object
-		return colorFromVec(&vector3d(origin,D),color);
-	}
+	virtual bool colorFromVec(vector3d*,uint32_t*);
+	virtual bool colorFromVec(point3d,point3d,uint32_t*);//returns false if vector does not intersect voxel object}
 
-	virtual vRef getRefrence(){return vRef(this,&refrences);}//lololol showing its privates
+	virtual vRef getRefrence();
 
-	voxel(double x_initial=0,double y_initial=0,double z_initial=0,double sx_initial=1,double sy_initial=1,double sz_initial=1){
-		xmag=sx_initial;
-		ymag=sy_initial;
-		zmag=sz_initial;
-
-		x=point3d(xmag,0,0);
-		y=point3d(0,ymag,0);
-		z=point3d(0,0,zmag);
-
-		center=point3d(x_initial,y_initial,z_initial);
+	voxel(double x_initial=0,double y_initial=0,double z_initial=0,double dx=1,double dy=1,double dz=1):
+		center(point3d(x_initial,y_initial,z_initial)),
+		//xmag(dx),
+		//ymag(dy),
+		//zmag(dz),
+		xvec(point3d(dx,0,0)),
+		yvec(point3d(0,dy,0)),
+		zvec(point3d(0,0,dz))
+	{
 		head=new vnode();
 	}
+	virtual ~voxel();
 
-	virtual point3d getScale(){return point3d(xmag,ymag,zmag);}
-	virtual double getXscale(){return xmag;}
-	virtual double getYscale(){return ymag;}
-	virtual double getZscale(){return zmag;}
+	virtual point3d getScale();
+	/*
+	virtual double getXscale();
+	virtual double getYscale();
+	virtual double getZscale();
+	//*/
 
-	///TODO
-	virtual void setScale(double x,double y,double z){
-	}
-	virtual void scaleBy(double amount){
-	}
+	virtual void setScale(double,double,double);
+	virtual void scaleBy(double);
+
+	///virtual bool loadFile();///TODO: one day...
 };
-
-vRef::~vRef(){//down here b/c it needs to see the destructors of voxel objects
-	*references--;
-	if(*references==0){
-		delete data;
-	}
-}
 
 #include "svoxel.h"
 #include "avoxel.h"

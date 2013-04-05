@@ -1,50 +1,48 @@
 #ifndef STRUCTS_H_INCLUDED
 #define STRUCTS_H_INCLUDED
 
-#include <cstdlib>
-#include <stdint.h>
-#include <cmath>
-#include <vector>
-using namespace std;
+//#include <cstdint>
+#include "stdint.h"
+
+///TODO: learn to initializer list
 
 struct point3d{
 	double x,y,z;
-	point3d(double x0=0,double y0=0,double z0=0){
-		x=x0;
-		y=y0;
-		z=z0;
-	}
+	point3d(double x0=0,double y0=0,double z0=0):
+		x(x0),
+		y(y0),
+		z(z0)
+	{}
 };
-struct point3f{
+struct point3f{///TODO: make use of this
 	float x,y,z;
-	point3f(float x0=0,float y0=0,float z0=0){
-		x=x0;
-		y=y0;
-		z=z0;
-	}
+	point3f(float x0=0,float y0=0,float z0=0):
+		x(x0),
+		y(y0),
+		z(z0)
+	{}
 };
 
 struct vector3d{
 	double x,y,z,dx,dy,dz;
-	vector3d(double x0=0,double y0=0,double z0=0,double dx0=0,double dy0=0,double dz0=0){
-		x=x0;
-		y=y0;
-		z=z0;
-		dx=dx0;
-		dy=dy0;
-		dz=dz0;
-	}
-	vector3d(point3d from,point3d slope){
-		x=from.x;
-		y=from.y;
-		z=from.z;
-		dx=slope.x;
-		dy=slope.y;
-		dz=slope.z;
-	}
-	double dot(vector3d vec){
-		return dx*vec.dx+dy*vec.dy+dz*vec.dz;
-	}
+	double dot(vector3d);
+
+	vector3d(double x0=0,double y0=0,double z0=0,double dx0=0,double dy0=0,double dz0=0):
+		x(x0),
+		y(y0),
+		z(z0),
+		dx(dx0),
+		dy(dy0),
+		dz(dz0)
+	{}
+	vector3d(point3d from,point3d slope):
+		x(from.x),
+		y(from.y),
+		z(from.z),
+		dx(slope.x),
+		dy(slope.y),
+		dz(slope.z)
+	{}
 };
 
 struct vnode;
@@ -88,6 +86,9 @@ struct vnode{
 
 	uint16_t shape;//stores which children exist and which are leaves
 	uint8_t r,g,b;
+	///TODO: learn to initializer list
+	//vnode(uint8_t,uint8_t,uint8_t);
+	~vnode();
 };
 
 #endif // STRUCTS_H_INCLUDED

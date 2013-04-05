@@ -7,11 +7,16 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin\Debug\engine" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
+				<Option output="bin/Debug/engine" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
 					<Add option="-pg" />
 					<Add option="-g" />
 				</Compiler>
@@ -21,12 +26,17 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin\Release\engine" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+				<Option output="bin/Release/engine" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
 					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -34,21 +44,27 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-march=core2" />
 			<Add option="-Wall" />
 		</Compiler>
 		<Linker>
 			<Add option="-lmingw32 -lSDLmain -lSDL" />
 		</Linker>
+		<Unit filename="avoxel.cpp" />
 		<Unit filename="avoxel.h" />
-		<Unit filename="camera.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
+		<Unit filename="camera.cpp" />
+		<Unit filename="camera.h" />
+		<Unit filename="engine.cpp" />
 		<Unit filename="engine.h" />
+		<Unit filename="headers.h" />
+		<Unit filename="lighting.cpp" />
 		<Unit filename="lighting.h" />
+		<Unit filename="structs.cpp" />
 		<Unit filename="structs.h" />
+		<Unit filename="svoxel.cpp" />
 		<Unit filename="svoxel.h" />
 		<Unit filename="tester.cpp" />
+		<Unit filename="voxel.cpp" />
 		<Unit filename="voxel.h" />
 		<Extensions>
 			<code_completion />
