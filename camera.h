@@ -15,7 +15,7 @@ protected:
 
 	virtual void recalc();//is called every time any of its vars change already, no reason for user to call, but could want to override in a subclass
 public:
-	point3d center;
+	//point3d origin;
 	void init(double x=0,double y=0,double z=0,double inc=0,double azm=0,double tilt=0){//,double angle=0){
 	}
 	///camera();///TODO it may want a constructor...

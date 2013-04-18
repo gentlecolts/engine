@@ -43,6 +43,14 @@ struct vector3d{
 		dy(slope.y),
 		dz(slope.z)
 	{}
+	vector3d(point3d* from,point3d* slope):
+		x(from->x),
+		y(from->y),
+		z(from->z),
+		dx(slope->x),
+		dy(slope->y),
+		dz(slope->z)
+	{}
 };
 
 struct vnode;
@@ -85,6 +93,13 @@ struct vnode{
 	*/
 
 	uint16_t shape;//stores which children exist and which are leaves
+	/**
+	 llllllll cccccccc
+	 F      8 7      0
+	 c - does the child exist
+	 l - is it a leaf?
+	*/
+
 	uint8_t r,g,b;
 	///TODO: learn to initializer list
 	//vnode(uint8_t,uint8_t,uint8_t);
